@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  balance: 9.99
+  currency: MyString
+  wallet_type: one
+  wallet_type_type: Wallet type
+
+two:
+  balance: 9.99
+  currency: MyString
+  wallet_type: two
+  wallet_type_type: Wallet type
