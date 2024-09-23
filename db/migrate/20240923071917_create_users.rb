@@ -1,4 +1,6 @@
 class CreateUsers < ActiveRecord::Migration[7.2]
+  attr_accessor :password, :password_confirmation
+
   def change
     create_table :users do |t|
       t.string :name
@@ -8,7 +10,8 @@ class CreateUsers < ActiveRecord::Migration[7.2]
       t.string :password_digest
       t.string :address
       t.string :user_type
-      t.references :sateam, null: true, foreign_key: true
+      t.references :team, null: true, foreign_key: true
+
       t.timestamps
     end
   end

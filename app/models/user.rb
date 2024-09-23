@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-    has_secure_password
-
     belongs_to :team, optional: true
     has_many :wallets, as: :wallet_type
+    has_secure_password
     validates :email, presence: true
 end
