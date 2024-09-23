@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  price_per_unit: 9.99
+  price: 9.99
   description: MyString
   status: MyString
 
 two:
   name: MyString
-  price_per_unit: 9.99
+  price: 9.99
   description: MyString
   status: MyString

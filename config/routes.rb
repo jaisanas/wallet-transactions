@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :transactions
-  resources :stocks
-  resources :wallets
+  resources :transactions, only: [:create, :index]
+  resources :stocks, only: [:index]
+  resources :wallets, only: [:create, :index]
   resources :users
+  resources :users, only: [:create]
   resources :teams
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -14,4 +15,6 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   post 'login', to: 'sessions#create'
+  post 'signin', to: 'users#signin'
+  get 'profile', to: 'users#profile'
 end
