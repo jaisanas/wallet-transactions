@@ -42,4 +42,4 @@
 
 ### Documentaion
 
-- For documentation you can read by following by open the static page under `/doc` folder
+- For documentation you can read by following by open the static page under `/doc` folder, or by accessing this documentation https://jaisanas.github.io/wallet-transactions/doc
