@@ -46,3 +46,7 @@ stocks = Stock.create([
         status: "available"
     }
 ])
+
+stocks.each do |stock|
+    wallet = Wallet.create!(balance: 0, currency: "USD", wallet_type: stock)
+end
