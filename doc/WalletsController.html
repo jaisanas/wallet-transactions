@@ -112,14 +112,32 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-create-label-Description">Description<span><a href="#method-i-create-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>This method will provide api to create active user’s new wallet</p>
+
+<h2 id="method-i-create-label-Parameters-3A">Parameters:<span><a href="#method-i-create-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt>balance
+<dd>
+<p>user’s balance (Decimal)</p>
+</dd><dt>currency
+<dd>
+<p>balance’s currency (IDR, USD, …) (String)</p>
+</dd></dl>
+
+<h2 id="method-i-create-label-Logic-3A">Logic:<span><a href="#method-i-create-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Sanitized parameter input, only model’s attributes Create new wallet object from sanitized parameter input Save object to execute active record and store in db</p>
+
+<h2 id="method-i-create-label-Returns-3A">Returns:<span><a href="#method-i-create-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>If object is sucessfully created in db record, it will render wallet json object If failed then it will return error with error message</p>
 
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/wallets_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/wallets_controller.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
     <span class="ruby-ivar">@wallet</span> = <span class="ruby-constant">Wallet</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wallet_params</span>)
-    <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
-    <span class="ruby-ivar">@wallet</span>.<span class="ruby-identifier">wallet_type</span> = <span class="ruby-identifier">user</span>
+    <span class="ruby-ivar">@wallet</span>.<span class="ruby-identifier">wallet_type</span> = <span class="ruby-identifier">current_user</span>
 
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@wallet</span>.<span class="ruby-identifier">save!</span>
         <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-ivar">@wallet</span>
@@ -143,10 +161,29 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-create_team_wallet-label-Description">Description<span><a href="#method-i-create_team_wallet-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>This method will provide api to create team’s wallet</p>
+
+<h2 id="method-i-create_team_wallet-label-Parameters-3A">Parameters:<span><a href="#method-i-create_team_wallet-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt>balance
+<dd>
+<p>user’s balance (Decimal)</p>
+</dd><dt>currency
+<dd>
+<p>balance’s currency (IDR, USD, …) (String)</p>
+</dd></dl>
+
+<h2 id="method-i-create_team_wallet-label-Logic-3A">Logic:<span><a href="#method-i-create_team_wallet-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Sanitized parameter input, only model’s attributes Check if current is is admin Create new wallet object from sanitized parameter input Set wallet’s association to team Save object to execute active record and store in db</p>
+
+<h2 id="method-i-create_team_wallet-label-Returns-3A">Returns:<span><a href="#method-i-create_team_wallet-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>If object is sucessfully created in db record, it will render wallet json object If failed then it will return error with error message</p>
 
           <div class="method-source-code" id="create_team_wallet-source">
-            <pre><span class="ruby-comment"># File app/controllers/wallets_controller.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/controllers/wallets_controller.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_team_wallet</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">user_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;admin&quot;</span>
         <span class="ruby-identifier">team</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">team</span>
@@ -177,10 +214,22 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-get_team_wallet-label-Description">Description<span><a href="#method-i-get_team_wallet-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>This method will provide api to get team’s wallet</p>
+
+<h2 id="method-i-get_team_wallet-label-Parameters-3A">Parameters:<span><a href="#method-i-get_team_wallet-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h2 id="method-i-get_team_wallet-label-Logic-3A">Logic:<span><a href="#method-i-get_team_wallet-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Get team from current user Fetch all wallets that associated to the team</p>
+
+<h2 id="method-i-get_team_wallet-label-Returns-3A">Returns:<span><a href="#method-i-get_team_wallet-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Return wallet object json</p>
 
           <div class="method-source-code" id="get_team_wallet-source">
-            <pre><span class="ruby-comment"># File app/controllers/wallets_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/wallets_controller.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_team_wallet</span>
     <span class="ruby-identifier">team</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">team</span>
     <span class="ruby-ivar">@wallets</span> = <span class="ruby-identifier">team</span>.<span class="ruby-identifier">wallets</span>
@@ -202,10 +251,22 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-index-label-Description">Description<span><a href="#method-i-index-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>This method will provide api to get list of active’s user wallets</p>
+
+<h2 id="method-i-index-label-Parameters-3A">Parameters:<span><a href="#method-i-index-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h2 id="method-i-index-label-Logic-3A">Logic:<span><a href="#method-i-index-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Find all wallets that is associated with user</p>
+
+<h2 id="method-i-index-label-Returns-3A">Returns:<span><a href="#method-i-index-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Return wallet object</p>
 
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/wallets_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/wallets_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
     <span class="ruby-ivar">@wallets</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallets</span>
     <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-ivar">@wallets</span>

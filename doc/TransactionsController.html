@@ -111,10 +111,43 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-create-label-Description">Description<span><a href="#method-i-create-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-constant">This</span> <span class="ruby-identifier">method</span> <span class="ruby-identifier">will</span> <span class="ruby-identifier">provide</span> <span class="ruby-identifier">api</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">create</span> <span class="ruby-identifier">new</span> <span class="ruby-identifier">transaction</span>
+</pre>
+
+<h2 id="method-i-create-label-Parameters-3A">Parameters:<span><a href="#method-i-create-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt>from_wallet_id
+<dd>
+<p><a href="Wallet.html"><code>Wallet</code></a> id sender (Integer)</p>
+</dd><dt>to_wallet_id
+<dd>
+<p><a href="Wallet.html"><code>Wallet</code></a> id recipient (Integer)</p>
+</dd><dt>amount
+<dd>
+<p>Amount that will be deducted from wallet sender (Decimal)</p>
+</dd><dt>trasaction_type
+<dd>
+<p>Type of transaction that is allowed: transfer, topup, withdraw, purchase, refund</p>
+</dd></dl>
+
+<h2 id="method-i-create-label-Logic-3A">Logic:<span><a href="#method-i-create-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>Sanitized parameter input, only model&#39;s attributes
+Check transaction type
+If transaction_type is equal to transfer then execute transfer logic
+If transaction_type is equal to topup then execute topup logic
+If transaction_type is equal to withdraw then execute withdraw logic
+If transaction_type is equal to purchase then execute purchase logic
+If transaction_type is equal to refund then execute refund logic</pre>
+
+<h2 id="method-i-create-label-Returns-3A">Returns:<span><a href="#method-i-create-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>If object is sucessfully created in db record, it will render success message object
+If failed then it will return error with error message</pre>
 
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/transactions_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/transactions_controller.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:transaction_type</span>]
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;transfer&quot;</span>
@@ -152,10 +185,28 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-histories-label-Description">Description<span><a href="#method-i-histories-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>This method will provide api to get current user&#39;s transactions list</pre>
+
+<h2 id="method-i-histories-label-Parameters-3A">Parameters:<span><a href="#method-i-histories-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h2 id="method-i-histories-label-Logic-3A">Logic:<span><a href="#method-i-histories-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-constant">Initialize</span> <span class="ruby-identifier">empty</span> <span class="ruby-identifier">array</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">accomodate</span> <span class="ruby-identifier">result</span>
+<span class="ruby-constant">Get</span> <span class="ruby-identifier">all</span> <span class="ruby-identifier">wallets</span> <span class="ruby-identifier">that</span> <span class="ruby-identifier">is</span> <span class="ruby-identifier">associated</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">current_user</span>
+<span class="ruby-constant">Iterate</span> <span class="ruby-identifier">each</span> <span class="ruby-identifier">wallet</span> 
+<span class="ruby-constant">Query</span> <span class="ruby-identifier">all</span> <span class="ruby-identifier">transactions</span> <span class="ruby-identifier">where</span> <span class="ruby-identifier">wallet</span> <span class="ruby-identifier">id</span> <span class="ruby-identifier">is</span> <span class="ruby-identifier">equal</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">from_wallet_id</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">to_wallet_ud</span>
+<span class="ruby-constant">Append</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">result</span>
+</pre>
+
+<h2 id="method-i-histories-label-Returns-3A">Returns:<span><a href="#method-i-histories-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>If object is sucessfully created in db record, it will render transactions json array object
+If failed then it will return error with error message</pre>
 
           <div class="method-source-code" id="histories-source">
-            <pre><span class="ruby-comment"># File app/controllers/transactions_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/transactions_controller.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">histories</span>
     <span class="ruby-ivar">@transaction_histories</span> = []
     <span class="ruby-identifier">wallets</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallets</span>
@@ -182,10 +233,28 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-index-label-Description">Description<span><a href="#method-i-index-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>This method will provide api to get current user&#39;s transactions list</pre>
+
+<h2 id="method-i-index-label-Parameters-3A">Parameters:<span><a href="#method-i-index-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h2 id="method-i-index-label-Logic-3A">Logic:<span><a href="#method-i-index-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-constant">Initialize</span> <span class="ruby-identifier">empty</span> <span class="ruby-identifier">array</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">accomodate</span> <span class="ruby-identifier">result</span>
+<span class="ruby-constant">Get</span> <span class="ruby-identifier">all</span> <span class="ruby-identifier">wallets</span> <span class="ruby-identifier">that</span> <span class="ruby-identifier">is</span> <span class="ruby-identifier">associated</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">current_user</span>
+<span class="ruby-constant">Iterate</span> <span class="ruby-identifier">each</span> <span class="ruby-identifier">wallet</span> 
+<span class="ruby-constant">Query</span> <span class="ruby-identifier">all</span> <span class="ruby-identifier">transactions</span> <span class="ruby-identifier">where</span> <span class="ruby-identifier">wallet</span> <span class="ruby-identifier">id</span> <span class="ruby-identifier">is</span> <span class="ruby-identifier">equal</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">from_wallet_id</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">to_wallet_ud</span>
+<span class="ruby-constant">Append</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">result</span>
+</pre>
+
+<h2 id="method-i-index-label-Returns-3A">Returns:<span><a href="#method-i-index-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>If object is sucessfully created in db record, it will render transactions json array object
+If failed then it will return error with error message</pre>
 
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/transactions_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/transactions_controller.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
     <span class="ruby-ivar">@transaction_histories</span> = []
     <span class="ruby-identifier">wallets</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">wallets</span>

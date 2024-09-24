@@ -114,7 +114,7 @@
           
 
           <div class="method-source-code" id="assign-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">assign</span>
    <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>])
    <span class="ruby-identifier">team</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">team</span>
@@ -137,15 +137,30 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-create-label-Description">Description<span><a href="#method-i-create-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>This method will provide creating new team from active user</p>
+
+<h2 id="method-i-create-label-Parameters-3A">Parameters:<span><a href="#method-i-create-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<dl class="rdoc-list note-list"><dt>name
+<dd>
+<p>Team’s name (String)</p>
+</dd></dl>
+
+<h2 id="method-i-create-label-Logic-3A">Logic:<span><a href="#method-i-create-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Sanitized parameter input, only model’s attributes is permitted Create new user object from parameter input Save object to execute active record and store in db</p>
+
+<h2 id="method-i-create-label-Returns-3A">Returns:<span><a href="#method-i-create-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>If object is sucessfully created in db record, it will render team json object If failed then it will return error with error message</p>
 
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
     <span class="ruby-ivar">@team</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">team_params</span>)
-    <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@team</span>.<span class="ruby-identifier">save!</span>
-        <span class="ruby-identifier">user</span>.<span class="ruby-identifier">update</span>(<span class="ruby-value">team:</span> <span class="ruby-ivar">@team</span>, <span class="ruby-value">user_type:</span> <span class="ruby-string">&quot;admin&quot;</span>)
+        <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">update</span>(<span class="ruby-value">team:</span> <span class="ruby-ivar">@team</span>, <span class="ruby-value">user_type:</span> <span class="ruby-string">&quot;admin&quot;</span>)
         <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-ivar">@team</span>
     <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> { <span class="ruby-value">errors:</span> <span class="ruby-string">&quot;failed to create new team&quot;</span> }, <span class="ruby-value">status:</span> <span class="ruby-value">:unprocessable_entity</span>
@@ -167,10 +182,22 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-my_team-label-Description">Description<span><a href="#method-i-my_team-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>This api will provide api to get team detail</p>
+
+<h2 id="method-i-my_team-label-Parameters-3A">Parameters:<span><a href="#method-i-my_team-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h2 id="method-i-my_team-label-Logic-3A">Logic:<span><a href="#method-i-my_team-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Create team object from sanitized team parameter Update current_user to admin</p>
+
+<h2 id="method-i-my_team-label-Returns-3A">Returns:<span><a href="#method-i-my_team-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>If object is sucessfully created in db record, it will render team json object If failed then it will return error with error message</p>
 
           <div class="method-source-code" id="my_team-source">
-            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/teams_controller.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">my_team</span>
     <span class="ruby-ivar">@team</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">team</span>
     <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-ivar">@team</span>

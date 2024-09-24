@@ -110,25 +110,44 @@
         </div>
 
         <div class="method-description">
-          <h2 id="method-i-create-label-Description">Description<span><a href="#method-i-create-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+          <pre>== Description
+This method is used to create new user or as a sign up
 
-<p>This method adds two numbers together.</p>
-
-<h2 id="method-i-create-label-Parameters-3A">Parameters:<span><a href="#method-i-create-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
-<dl class="rdoc-list note-list"><dt>num1
+== Parameters:</pre>
+<dl class="rdoc-list note-list"><dt>name
 <dd>
-<p>The first number (Integer).</p>
-</dd><dt>num2
+<p>full name that consist of first name, middle name(optional), and last_name as a sing string(String).</p>
+</dd><dt>birth_date
 <dd>
-<p>The second number (Integer).</p>
+<p>date of birth user (Datetime).</p>
+</dd><dt>phone_number
+<dd>
+<p>phone number should be started with country code such as 62 for indonesia (String)</p>
+</dd><dt>address
+<dd>
+<p>user’s address(String)</p>
+</dd><dt>user_type
+<dd>
+<p>allowed value for user_type is only admin and non-admin (String)</p>
+</dd><dt>password
+<dd>
+<p>user’s password (String)</p>
+</dd><dt>password_confirmation
+<dd>
+<p>password_confirmation must match with password (String)</p>
 </dd></dl>
 
-<h2 id="method-i-create-label-Returns-3A">Returns:<span><a href="#method-i-create-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<pre>== Logic:
+  Sanitized parameter input, only model&#39;s attributes and password is permitted
+  Create new user object from parameter input
+  Save object to execute active record and store in db
 
-<p>An Integer that is the sum of the two numbers.</p>
+== Returns:
+  If object is sucessfully created in db record, it will render user json object
+  If failed then it will return error with error message</pre>
 
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
     <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">user_params</span>)
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save!</span>
@@ -155,13 +174,28 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-profile-label-Description">Description<span><a href="#method-i-profile-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>This method will provide api to get current user detail (user that is currently login)</p>
+
+<h2 id="method-i-profile-label-Parameters-3A">Parameters:<span><a href="#method-i-profile-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h2 id="method-i-profile-label-Logic-3A">Logic:<span><a href="#method-i-profile-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-constant">Find</span> <span class="ruby-identifier">user</span> <span class="ruby-identifier">by</span> <span class="ruby-identifier">user</span> <span class="ruby-identifier">id</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">active</span> <span class="ruby-identifier">session</span>
+<span class="ruby-constant">Return</span> <span class="ruby-identifier">user</span> <span class="ruby-identifier">json</span> <span class="ruby-identifier">object</span> <span class="ruby-identifier">by</span> <span class="ruby-identifier">excluding</span> <span class="ruby-identifier">password_digest</span>
+<span class="ruby-constant">Excluding</span> <span class="ruby-identifier">password</span> <span class="ruby-identifier">digest</span> <span class="ruby-identifier">will</span> <span class="ruby-identifier">minimize</span> <span class="ruby-identifier">security</span> <span class="ruby-identifier">vulnerability</span>
+</pre>
+
+<h2 id="method-i-profile-label-Returns-3A">Returns:<span><a href="#method-i-profile-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-constant">Return</span> <span class="ruby-identifier">user</span> <span class="ruby-identifier">json</span> <span class="ruby-identifier">object</span> <span class="ruby-identifier">by</span> <span class="ruby-identifier">excluding</span> <span class="ruby-identifier">password_digest</span>
+</pre>
 
           <div class="method-source-code" id="profile-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">profile</span>
-    <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
-    <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">as_json</span>(<span class="ruby-value">except:</span> [<span class="ruby-value">:password_digest</span>])
+    <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">as_json</span>(<span class="ruby-value">except:</span> [<span class="ruby-value">:password_digest</span>])
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
