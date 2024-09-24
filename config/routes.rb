@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   post 'login', to: 'sessions#create'
-  post 'signin', to: 'users#signin'
+  post 'logout', to: 'sessions#destroy'
   get 'profile', to: 'users#profile'
+  get 'transaction/histories', to: 'transactions#histories' 
+  get 'my_team', to: 'teams#my_team'
+  post 'assign', to: 'teams#assign'
+  post 'team_wallets', to: 'wallets#create_team_wallet'
+  get 'team_wallets', to: 'wallets#get_team_wallet'
 end
