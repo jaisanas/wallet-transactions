@@ -17,3 +17,29 @@
 - Team has one to one relationship with wallet. Wallet that belongs to team is shared walled that can be accesed by every user in a team. For non admin user is limited that need approval from user that as admin role.
 - Stock has one to one relationship wallet. The balance in wallet's stock represents quantity of stock.
 - Wallet and transactions has many to many relationship.
+
+### How to install and run application
+
+- This project is build with rails version 7 and ruby version 3
+- Clone project into your computer
+- Run this command install gem's dependencies
+
+```
+    bundle install
+```
+
+- Run this command to migrate database
+
+```
+    rails db:migrate
+```
+
+- Run this command to start application
+
+```
+    rails s
+```
+
+### Documentaion
+
+- For documentation you can read by following by open the static page under `/doc` folder
