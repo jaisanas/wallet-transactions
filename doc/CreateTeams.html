@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class StocksController - RDoc Documentation</title>
+<title>class CreateTeams - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -61,7 +61,7 @@
 <div id="parent-class-section" class="nav-section">
   <h3>Parent</h3>
 
-  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  <p class="link">ActiveRecord::Migration[7.2]
 </div>
 
     
@@ -72,16 +72,16 @@
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
-    <li ><a href="#method-i-index">#index</a>
+    <li ><a href="#method-i-change">#change</a>
   </ul>
 </div>
 
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-StocksController">
-  <h1 id="class-StocksController" class="class">
-    class StocksController
+<main role="main" aria-labelledby="class-CreateTeams">
+  <h1 id="class-CreateTeams" class="class">
+    class CreateTeams
   </h1>
 
   <section class="description">
@@ -99,37 +99,25 @@
          <h3>Public Instance Methods</h3>
        </header>
 
-      <div id="method-i-index" class="method-detail ">
+      <div id="method-i-change" class="method-detail ">
         <div class="method-header">
           <div class="method-heading">
-            <span class="method-name">index</span><span
+            <span class="method-name">change</span><span
               class="method-args">()</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
         </div>
 
         <div class="method-description">
-          <h2 id="method-i-index-label-Description">Description<span><a href="#method-i-index-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+          
 
-<pre class="ruby"><span class="ruby-constant">This</span> <span class="ruby-identifier">method</span> <span class="ruby-identifier">will</span> <span class="ruby-identifier">provide</span> <span class="ruby-identifier">functionality</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">list</span> <span class="ruby-identifier">of</span> <span class="ruby-identifier">stock</span> <span class="ruby-identifier">stock</span>
-</pre>
-
-<h2 id="method-i-index-label-Parameters-3A">Parameters:<span><a href="#method-i-index-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
-
-<h2 id="method-i-index-label-Logic-3A">Logic:<span><a href="#method-i-index-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
-
-<pre class="ruby"><span class="ruby-constant">Get</span> <span class="ruby-identifier">list</span> <span class="ruby-identifier">of</span> <span class="ruby-identifier">stock</span>
-</pre>
-
-<h2 id="method-i-index-label-Returns-3A">Returns:<span><a href="#method-i-index-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
-
-<pre>Return stock&#39;s json array objects</pre>
-
-          <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/stocks_controller.rb, line 14</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">index</span>
-    <span class="ruby-ivar">@stocks</span> = <span class="ruby-constant">Stock</span>.<span class="ruby-identifier">all</span>
-    <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> <span class="ruby-ivar">@stocks</span>
+          <div class="method-source-code" id="change-source">
+            <pre><span class="ruby-comment"># File db/migrate/20240921044234_create_teams.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">change</span>
+  <span class="ruby-identifier">create_table</span> <span class="ruby-value">:teams</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span> <span class="ruby-value">:name</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">timestamps</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>

@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>master.key - RDoc Documentation</title>
+<title>docker-entrypoint - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -68,7 +68,7 @@
     <li><a href="../Rakefile.html">Rakefile</a>
     <li><a href="../bin/docker-entrypoint.html">docker-entrypoint</a>
     <li><a href="../config_ru.html">config.ru</a>
-    <li><details open><summary>config</summary>
+    <li><details><summary>config</summary>
     <ul class="link-list">
       <li><a href="../config/credentials_yml_enc.html">credentials.yml.enc</a>
       <li><a href="../config/master_key.html">master.key</a>
@@ -86,9 +86,24 @@
   </div>
 </nav>
 
-<main role="main" aria-label="Page config/master.key">
+<main role="main" aria-label="Page bin/docker-entrypoint">
 
-<p>75ac8f014ffb3d446667d57d80d67abc</p>
+<p>!/bin/bash -e</p>
+
+<p># Enable jemalloc for reduced memory usage and latency. if [ -z “${LD_PRELOAD+x}” ] &amp;&amp; [ -f /usr/lib/*/libjemalloc.so.2 ]; then</p>
+
+<pre class="ruby"><span class="ruby-identifier">export</span> <span class="ruby-constant">LD_PRELOAD</span>=<span class="ruby-string">&quot;$(echo /usr/lib/*/libjemalloc.so.2)&quot;</span>
+</pre>
+
+<p>fi</p>
+
+<p># If running the rails server then create or migrate existing database if [ “${1}” == “./bin/rails” ] &amp;&amp; [ “${2}” == “server” ]; then</p>
+
+<pre>./bin/rails db:prepare</pre>
+
+<p>fi</p>
+
+<p>exec “${@}”</p>
 
 </main>
 

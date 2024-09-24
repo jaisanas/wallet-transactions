@@ -111,10 +111,22 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-authorize-label-Description">Description<span><a href="#method-i-authorize-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>This method will provide functionality to validate if user is currently logged in</pre>
+
+<h2 id="method-i-authorize-label-Parameters-3A">Parameters:<span><a href="#method-i-authorize-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h2 id="method-i-authorize-label-Logic-3A">Logic:<span><a href="#method-i-authorize-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>Check if user is logged in</pre>
+
+<h2 id="method-i-authorize-label-Returns-3A">Returns:<span><a href="#method-i-authorize-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>If user is not login then it will return error with error message</pre>
 
           <div class="method-source-code" id="authorize-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">authorize</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">logged_in?</span>
         <span class="ruby-identifier">render</span> <span class="ruby-value">json:</span> { <span class="ruby-value">error:</span> <span class="ruby-string">&#39;You must be logged in to access this resource&#39;</span> }, <span class="ruby-value">status:</span> <span class="ruby-value">:unauthorized</span>
@@ -136,10 +148,22 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-current_user-label-Description">Description<span><a href="#method-i-current_user-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre class="ruby"><span class="ruby-constant">This</span> <span class="ruby-identifier">method</span> <span class="ruby-identifier">will</span> <span class="ruby-identifier">provide</span> <span class="ruby-identifier">functionality</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">set</span> <span class="ruby-identifier">current</span> <span class="ruby-identifier">user</span> <span class="ruby-identifier">session</span>
+</pre>
+
+<h2 id="method-i-current_user-label-Parameters-3A">Parameters:<span><a href="#method-i-current_user-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h2 id="method-i-current_user-label-Logic-3A">Logic:<span><a href="#method-i-current_user-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>Find user by id that is stored in session
+Set current_user with fetched user</pre>
+
+<h2 id="method-i-current_user-label-Returns-3A">Returns:<span><a href="#method-i-current_user-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="current_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 2</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">current_user</span>
     <span class="ruby-ivar">@current_user</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-value">id:</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -159,10 +183,20 @@
         </div>
 
         <div class="method-description">
-          
+          <h2 id="method-i-logged_in-3F-label-Description">Description<span><a href="#method-i-logged_in-3F-label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>This method will provide functionality to check if user is logged in</pre>
+
+<h2 id="method-i-logged_in-3F-label-Parameters-3A">Parameters:<span><a href="#method-i-logged_in-3F-label-Parameters-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h2 id="method-i-logged_in-3F-label-Logic-3A">Logic:<span><a href="#method-i-logged_in-3F-label-Logic-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<pre>Check if current_user is not nil</pre>
+
+<h2 id="method-i-logged_in-3F-label-Returns-3A">Returns:<span><a href="#method-i-logged_in-3F-label-Returns-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
 
           <div class="method-source-code" id="logged_in-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">logged_in?</span>
     <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">current_user</span>
 <span class="ruby-keyword">end</span></pre>
