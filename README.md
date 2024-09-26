@@ -34,6 +34,12 @@
     rails db:migrate
 ```
 
+- Run this command to run stocks record seeding
+
+```
+    rails db:migrate
+```
+
 - Run this command to start application
 
 ```
